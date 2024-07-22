@@ -1,0 +1,5 @@
+#request
+string file_path
+---
+#response
+prometheus_slam_msgs/PoseHistory pose_history

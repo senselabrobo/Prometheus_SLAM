@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+        <!-- <param name="use_sim_time" value="true" /> -->
+        <arg name="bag_file0" default="~/Datasets/euroc/MH_01_easy.bag" />
+        <arg name="bag_file1" default="~/Datasets/euroc/MH_02_easy.bag" />
+        <arg name="play_speed" default="1" />
+        <arg name="skip_seconds" default="0" />
+        <arg name="delay_seconds" default="0" />
+        <arg name="id" default="2" />
+
+        <node pkg="rosbag" type="play" name="player_0" args="$(arg bag_file0) -d $(arg delay_seconds) -r $(arg play_speed) -s $(arg skip_seconds) /cam0/image_raw:=/cam0_0/image_raw /cam1/image_raw:=/cam1_0/image_raw imu0:=/imu0_0" />
+        <node pkg="rosbag" type="play" name="player_1" args="$(arg bag_file1) -d $(arg delay_seconds) -r $(arg play_speed) -s $(arg skip_seconds) /cam0/image_raw:=/cam0_1/image_raw /cam1/image_raw:=/cam1_1/image_raw imu0:=/imu0_1" />
+
+</launch>

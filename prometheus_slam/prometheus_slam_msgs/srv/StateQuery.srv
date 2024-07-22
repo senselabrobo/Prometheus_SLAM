@@ -1,0 +1,5 @@
+# request
+---
+# reponse
+uint8 n_submaps
+prometheus_slam_msgs/BoundingBox[] bb

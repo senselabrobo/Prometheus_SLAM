@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+
+        <arg name="tw_voxblox_config_file" default="$(find prometheus_slam)/config/tsdf_server_euroc.yaml" />
+        <arg name="tsdf_voxel_size" default="0.10" />
+        <arg name="truncation_distance" default="0.30" />
+        <arg name="recover_mode" default="false" />
+        <arg name="evaluate" default="false" />
+
+        <include file="$(find prometheus_slam)/launch/firefly/prometheus_slam_server_client_euroc.launch">
+                <arg name="id" value="0" />
+                <arg name="world_frame_suffix" value="odom" />
+                <arg name="tsdf_voxel_size" value="$(arg tsdf_voxel_size)" />
+                <arg name="truncation_distance" value="$(arg truncation_distance)" />
+                <arg name="debug_cg" value="true" />
+                <arg name="recover_mode" value="$(arg recover_mode)" />
+        </include>
+
+        <include file="$(find prometheus_slam)/launch/firefly/prometheus_slam_server_client_euroc.launch">
+                <arg name="id" value="1" />
+                <arg name="world_frame_suffix" value="odom" />
+                <arg name="tsdf_voxel_size" value="$(arg tsdf_voxel_size)" />
+                <arg name="truncation_distance" value="$(arg truncation_distance)" />
+                <arg name="debug_cg" value="true" />
+                <arg name="recover_mode" value="$(arg recover_mode)" />
+        </include>
+
+        <include file="$(find prometheus_slam)/launch/utils/pose_graph_backend.launch">
+                <arg name="num_agents" default="2" />
+        </include>
+
+        <include file="$(find prometheus_slam)/launch/prometheus_slam_server.launch">
+                <arg name="tsdf_voxel_size" value="$(arg tsdf_voxel_size)" />
+                <arg name="truncation_distance" value="$(arg truncation_distance)" />
+                <arg name="map_frame_prefix" default="odom" />
+                <arg name="debug" default="false" />
+        </include>
+
+        <!-- Show Rviz -->
+        <node type="rviz" name="rviz_experiment" pkg="rviz" args="-d $(find prometheus_slam)/config/rviz/prometheus_slam.rviz"/>
+
+</launch>

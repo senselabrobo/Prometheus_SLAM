@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+        <arg name="id" default="0" />
+        <arg name="use_vins" default="true" />
+
+        <include if="$(arg use_vins)" file="$(find prometheus_slam)/launch/utils/vins_zed.launch">
+                <arg name="mav_name" default="firefly" />
+                <arg name="id" value="$(arg id)" />
+                <arg name="config_path" value="$(find prometheus_slam)/config/zed2/zed2_$(arg id)_config.yaml" />
+        </include>
+</launch>

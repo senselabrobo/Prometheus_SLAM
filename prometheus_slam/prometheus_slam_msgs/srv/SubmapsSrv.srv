@@ -1,0 +1,4 @@
+#request
+---
+#response
+prometheus_slam_msgs/ClientSubmap[] submaps

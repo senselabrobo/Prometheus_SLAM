@@ -1,0 +1,16 @@
+<launch>
+    <arg name="config_path" default = "$(find vins)/../config/euroc/euroc_stereo_imu_config.yaml" />
+    
+    <node name="vins_estimator_gpu" pkg="vins" type="vins_node" output="screen">
+       <param name="config_file" type="string" value="$(arg config_path)" />
+    </node>
+
+    <!-- <node name="pose_graph" pkg="pose_graph" type="pose_graph" output="screen">
+        <param name="config_file" type="string" value="$(arg config_path)" />
+        <param name="visualization_shift_x" type="int" value="0" />
+        <param name="visualization_shift_y" type="int" value="0" />
+        <param name="skip_cnt" type="int" value="0" />
+        <param name="skip_dis" type="double" value="0" />
+    </node> -->
+
+</launch>
